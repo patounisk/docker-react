@@ -1,0 +1,8 @@
+sudo: required #permisions
+services:
+  - docker
+
+before_intall:
+  - docker build -t kostas/docker-react -f Dockerfile.dev .
+script:
+  - docker run kostas/docker-react npm run test -- --coverage
