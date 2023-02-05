@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build:
+      context: . # in case you have a dockerfile with differnt name / folder which docker is inside
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules # dont map this folder with anything/ do not overwrie
+      - .:/app # map everythning outside the container inside the working dir
+  tests:
+    build:
+      context: . # in case you have a dockerfile with differnt name / folder which docker is inside
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules # dont map this folder with anything/ do not overwrie
+      - .:/app # map everythning outside the container inside the working dir
+    command: ["npm", "run", "test"] #overwrite dockerfile command test.py
