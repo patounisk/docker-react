@@ -4,5 +4,18 @@ services:
 
 before_intall:
   - docker build -t kostas/docker-react -f Dockerfile.dev .
+
 script:
   - docker run kostas/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk #ekei pou kaneiw deploy
+  region: url for creating elastic instance oti exei mesa sto url gia region
+  app: opos eipe to app sto aws prwth leksi
+  env: deuteri leksi
+  bucket_name: s3 instance 
+  bucket_path: oti exei sto app
+  on:
+    branch: master
+  access_key_id: $kati
+  secret_key_d: "$kati allo"
